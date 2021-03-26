@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <h2>Web App to do</h2>
+    <p>Gestisci la tua lista di attività</p>
+
+    <form>
+        <p>Inserisci attività
+            <input id="taskToAdd">
+            <button type="button" onclick="addTask()">Insert</button>
+        </p>
+    </form>
+
+    <p id='allTasks'></p>
+
+    <script>
+        var list = [];
+        var task, idBox = 0, idButton = 1;
+
+        function addTask() {
+            if (document.getElementById("taskToAdd").value != "") {
+                task = {
+                    box: `<input type="checkbox" id="${idBox}" onclick="checkTask(this.id)">`,
+                    phrase: document.getElementById("taskToAdd").value,
+                    toDelete: `<button type="button" id="${idButton}" onclick="deleteTask(this.id)">Remove</button>`,
+                    codeBox: idBox,
+                    codeButton: idButton
+                };
+                list.push(task);
+                printTasks();
+                idBox--;
+                idButton++;
+            } else {
+                alert("Non hai inserito un'attività");
+            }
+        }
+
+        function checkTask(clickedIdBox) {
+            var checkboxCaller = document.getElementById(clickedIdBox);
+            for (let task of list) {
+                if (task.box == checkboxCaller.outerHTML) {
+                    task.box = `<input type="checkbox" id="${task.codeBox}" onclick="removeCheck(this.id)" checked="">`;
+                }
+            }
+            printTasks();
+        }
+
+        function removeCheck(clickedIdBoxChecked) {
+            var checkEdboxCaller = document.getElementById(clickedIdBoxChecked);
+            for (let task of list) {
+                if (task.box == checkEdboxCaller.outerHTML) {
+                    task.box = `<input type="checkbox" id="${task.codeBox}" onclick="checkTask(this.id)">`;
+                }
+            }
+            printTasks();
+        }
+
+        function deleteTask(clickedIdButton) {
+            var buttonCaller = document.getElementById(clickedIdButton);
+            for (let task of list) {
+                if (task.toDelete == buttonCaller.outerHTML) {
+                    list.splice(task.codeButton - 1, 1);
+                    break;
+                }
+            }
+            updateCodeButtons();
+            printTasks();
+        }
+
+        function updateCodeButtons() {
+            let idButtonDelete = 1;
+            for (let task of list) {
+                task.codeButton = idButtonDelete;
+                idButtonDelete++;
+            }
+        }
+
+        function printTasks() {
+            if (list != null) {
+                document.getElementById("allTasks").innerHTML = "";
+                for (let task of list) {
+                    document.getElementById("allTasks").innerHTML += task.box + " " + task.phrase + " " + task.toDelete + "<br>";
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
