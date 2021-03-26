@@ -2,21 +2,6 @@
 <html>
 
 <head>
-</head>
-
-<body>
-    <h2>Web App to do</h2>
-    <p>Gestisci la tua lista di attività</p>
-
-    <form>
-        <p>Inserisci attività
-            <input id="taskToAdd">
-            <button type="button" onclick="addTask()">Insert</button>
-        </p>
-    </form>
-
-    <p id='allTasks'></p>
-
     <script>
         var list = [];
         var task, idBox = 0, idButton = 1;
@@ -89,6 +74,20 @@
         }
 
     </script>
+</head>
+
+<body>
+    <h2>Web App to do</h2>
+    <p>Gestisci la tua lista di attività</p>
+
+    <form>
+        <p>Inserisci attività
+            <input id="taskToAdd">
+            <button type="button" onclick="addTask()">Insert</button>
+        </p>
+    </form>
+
+    <p id='allTasks'></p>
 </body>
 
 </html>
