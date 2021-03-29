@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="toDoStyle.css">
     <script>
         var list = [];
         var task, idBox = 0, idButton = 1;
@@ -11,7 +12,7 @@
                 task = {
                     box: `<input type="checkbox" id="${idBox}" onclick="checkTask(this.id)">`,
                     phrase: document.getElementById("taskToAdd").value,
-                    toDelete: `<button type="button" id="${idButton}" onclick="deleteTask(this.id)">Remove</button>`,
+                    toDelete: `<button type="button" id="${idButton}" onclick="deleteTask(this.id)">Rimuovi</button>`,
                     codeBox: idBox,
                     codeButton: idButton
                 };
@@ -77,17 +78,17 @@
 </head>
 
 <body>
-    <h2>Web App to do</h2>
-    <p>Gestisci la tua lista di attività</p>
-
+    <a href="https://www.unibg.it/"><img src="C:\Users\Babacar\Desktop\ObjectmethodJS\toDoList\Tinder-logo.png"></a>
+    <h2>Tinder, massimizza la tua produttività!</h2>
+    <p id="testo">Crea, gestisci e progetta il tuo lavoro. <br>
+        Dai grattacieli all’ufficio in casa, il modo in cui lavori è unico.<br>
+        Cosa aspetti? Inizia subito!</p>
     <form>
-        <p>Inserisci attività
-            <input id="taskToAdd">
-            <button type="button" onclick="addTask()">Insert</button>
-        </p>
+        <p id="taskRequest"><input id="taskToAdd" placeholder="  Inserisci attività"></p>
+        <p id="button"><button type="button" onclick="addTask()" id="bottone">Inserisci</button></p>
     </form>
 
-    <p id='allTasks'></p>
+    <div id="divAlltasks"><p id='allTasks'></p></div>
 </body>
 
 </html>
