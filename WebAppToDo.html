@@ -8,11 +8,12 @@
         var task, idBox = 0, idButton = 1;
 
         function addTask() {
-            if (document.getElementById("taskToAdd").value != "") {
+            if (document.getElementById("taskToAdd").value.trim()) {
+                //True se la string contiene almeno una lettera
                 task = {
                     box: `<input type="checkbox" id="${idBox}" onclick="checkTask(this.id)">`,
                     phrase: document.getElementById("taskToAdd").value,
-                    toDelete: `<button type="button" id="${idButton}" onclick="deleteTask(this.id)">Rimuovi</button>`,
+                    toDelete: `<button type="button" id="${idButton}" class="removeButton" onclick="deleteTask(this.id)">Rimuovi</button>`,
                     codeBox: idBox,
                     codeButton: idButton
                 };
@@ -78,17 +79,43 @@
 </head>
 
 <body>
-    <a href="https://www.unibg.it/"><img src="C:\Users\Babacar\Desktop\ObjectmethodJS\toDoList\Tinder-logo.png"></a>
+    <p class="contenitoreImmagine">
+        <a href="https://tinder.com/it"><img id="tinderImg" src="C:\Users\Babacar\Desktop\javascript\toDoList\Tinder-logo.png"></a>
+        <button onclick="" class="classRegistrati" id="registrati">REGISTRATI</button>
+        <button onclick="" class="classAccedi" id="accedi">ACCEDI</button>
+    </p>
+    <p class="chiSiamo">Chi siamo</p>
+
+    <select name="risorse" class="classRisorse" id="risorse">
+        <option value="Residenza">Risorse</option>
+        <option value="costi">Costi</option>
+        <option value="novita">Novità</option>
+        <option value="faq">FAQ</option>
+    </select>
+
     <h2>Tinder, massimizza la tua produttività!</h2>
-    <p id="testo">Crea, gestisci e progetta il tuo lavoro. <br>
+    <p class="testo">Crea, gestisci e progetta il tuo lavoro. <br>
         Dai grattacieli all’ufficio in casa, il modo in cui lavori è unico.<br>
         Cosa aspetti? Inizia subito!</p>
-    <form>
-        <p id="taskRequest"><input id="taskToAdd" placeholder="  Inserisci attività"></p>
-        <p id="button"><button type="button" onclick="addTask()" id="bottone">Inserisci</button></p>
+
+    <img id="workImg" src="C:\Users\Babacar\Desktop\javascript\toDoList\work.png">
+
+    <form onsubmit="return false">
+        <input id="taskToAdd" placeholder="Inserisci attività">
+        <script>
+            //Inserire task premendo Enter
+            var inputPhrase = document.getElementById("taskToAdd");
+            inputPhrase.addEventListener("keyup", function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            });
+        </script>
+        <button type="submit" onclick="addTask()" id="inserisci">Inserisci</button>
     </form>
 
-    <div id="divAlltasks"><p id='allTasks'></p></div>
+    <p id='allTasks'></p>
+
 </body>
 
 </html>
